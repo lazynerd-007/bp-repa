@@ -184,7 +184,7 @@ export default component$(() => {
         selectedLoan.value = null;
         paymentAmount.value = "";
       }, 2000);
-    } catch (error) {
+    } catch (_) {
       paymentStore.errorMessage = "Failed to process payment. Please try again.";
       paymentStore.isSubmitting = false;
       isLoading.value = false;
