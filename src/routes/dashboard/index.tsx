@@ -5,7 +5,7 @@ export default component$(() => {
   const summaryData = [
     {
       title: "Total Disbursed Loans",
-      value: "$1,250,500",
+      value: "GHS 1,250,500",
       change: "+12.5%",
       icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -15,7 +15,7 @@ export default component$(() => {
     },
     {
       title: "Total Repaid Loans",
-      value: "$980,250",
+      value: "GHS 980,250",
       change: "+8.2%",
       icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -25,7 +25,7 @@ export default component$(() => {
     },
     {
       title: "Outstanding Balance",
-      value: "$270,250",
+      value: "GHS 270,250",
       change: "-3.5%",
       isNegative: true,
       icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -50,7 +50,7 @@ export default component$(() => {
     {
       id: "LN-2023-001",
       merchant: "ABC Store",
-      amount: "$25,000",
+      amount: "GHS 25,000",
       disbursed: "2023-10-15",
       nextPayment: "2023-11-15",
       status: "active"
@@ -58,7 +58,7 @@ export default component$(() => {
     {
       id: "LN-2023-002",
       merchant: "XYZ Enterprises",
-      amount: "$50,000",
+      amount: "GHS 50,000",
       disbursed: "2023-09-30",
       nextPayment: "2023-10-30",
       status: "overdue"
@@ -66,7 +66,7 @@ export default component$(() => {
     {
       id: "LN-2023-003",
       merchant: "123 Retail",
-      amount: "$15,000",
+      amount: "GHS 15,000",
       disbursed: "2023-10-05",
       nextPayment: "2023-11-05",
       status: "active"
@@ -74,7 +74,7 @@ export default component$(() => {
     {
       id: "LN-2023-004",
       merchant: "Best Foods Inc.",
-      amount: "$75,000",
+      amount: "GHS 75,000",
       disbursed: "2023-08-15",
       nextPayment: "-",
       status: "completed"
@@ -82,7 +82,7 @@ export default component$(() => {
     {
       id: "LN-2023-005",
       merchant: "Tech Gadgets Co.",
-      amount: "$35,000",
+      amount: "GHS 35,000",
       disbursed: "2023-10-10",
       nextPayment: "2023-11-10",
       status: "active"
@@ -131,7 +131,7 @@ export default component$(() => {
         <table class="table">
           <thead>
             <tr>
-              <th>Loan ID</th>
+              <th>Merchant ID</th>
               <th>Merchant</th>
               <th>Amount</th>
               <th>Disbursed Date</th>

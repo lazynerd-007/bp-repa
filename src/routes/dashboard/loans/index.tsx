@@ -236,7 +236,7 @@ export default component$(() => {
             <table class="table">
               <thead>
                 <tr>
-                  <th>Loan ID</th>
+                  <th>Merchant ID</th>
                   <th>Merchant</th>
                   <th>Amount</th>
                   <th>Balance</th>
@@ -337,7 +337,7 @@ export default component$(() => {
               ) : (
                 <>
                   <div class="detail-item">
-                    <div class="detail-label">Loan ID</div>
+                    <div class="detail-label">Merchant ID</div>
                     <div class="detail-value">{selectedLoan.value.id}</div>
                   </div>
                   <div class="detail-item">

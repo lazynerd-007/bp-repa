@@ -272,7 +272,6 @@ export default component$(() => {
                   <th>Merchant ID</th>
                   <th>Name</th>
                   <th>Contact Person</th>
-                  <th>Email</th>
                   <th>Phone</th>
                   <th>Active Loans</th>
                   <th>Total Loans</th>
@@ -287,7 +286,6 @@ export default component$(() => {
                       <td>{merchant.id}</td>
                       <td>{merchant.name}</td>
                       <td>{merchant.contact}</td>
-                      <td>{merchant.email}</td>
                       <td>{merchant.phone}</td>
                       <td>{merchant.activeLoans}</td>
                       <td>{merchant.totalLoans}</td>
@@ -313,7 +311,7 @@ export default component$(() => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={9} style="text-align: center; padding: 2rem;">
+                    <td colSpan={8} style="text-align: center; padding: 2rem;">
                       No merchants found matching your criteria
                     </td>
                   </tr>
