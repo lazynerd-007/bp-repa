@@ -6,6 +6,17 @@ export default component$(() => {
   const isLoading = useSignal(false);
   const isSaving = useSignal(false);
   const showSuccessMessage = useSignal(false);
+  const currentPassword = useSignal("");
+  const newPassword = useSignal("");
+  const confirmPassword = useSignal("");
+  const otpValue = useSignal("");
+  
+  const passwordChangeStore = useSignal({
+    step: 1, // 1: Password input, 2: OTP verification
+    otpSent: false,
+    isSubmitting: false,
+    errorMessage: ""
+  });
   
   const profileData = useSignal({
     fullName: "John Smith",
@@ -14,19 +25,64 @@ export default component$(() => {
     joinedDate: "2022-05-15"
   });
   
-  const saveProfile = $(async () => {
-    isSaving.value = true;
+  const requestOTP = $(async () => {
+    if (!currentPassword.value || !newPassword.value || !confirmPassword.value) return;
+    if (newPassword.value !== confirmPassword.value) {
+      passwordChangeStore.value.errorMessage = "New password and confirmation do not match";
+      return;
+    }
+    
+    passwordChangeStore.value.isSubmitting = true;
+    
+    try {
+      // Simulate API call to send OTP
+      isLoading.value = true;
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      isLoading.value = false;
+      passwordChangeStore.value.isSubmitting = false;
+      passwordChangeStore.value.otpSent = true;
+      passwordChangeStore.value.step = 2;
+      passwordChangeStore.value.errorMessage = "";
+    } catch (error) {
+      passwordChangeStore.value.errorMessage = "Failed to send OTP. Please try again.";
+      passwordChangeStore.value.isSubmitting = false;
+      isLoading.value = false;
+    }
+  });
+
+  const changePassword = $(async () => {
+    if (!otpValue.value || otpValue.value.length < 6) {
+      passwordChangeStore.value.errorMessage = "Please enter a valid OTP";
+      return;
+    }
+    
+    passwordChangeStore.value.isSubmitting = true;
     
     try {
       // Simulate API call
+      isLoading.value = true;
       await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Reset fields
+      currentPassword.value = "";
+      newPassword.value = "";
+      confirmPassword.value = "";
+      otpValue.value = "";
+      passwordChangeStore.value.step = 1;
+      passwordChangeStore.value.otpSent = false;
       
       showSuccessMessage.value = true;
       setTimeout(() => {
         showSuccessMessage.value = false;
       }, 3000);
-    } finally {
-      isSaving.value = false;
+      
+      isLoading.value = false;
+      passwordChangeStore.value.isSubmitting = false;
+    } catch (error) {
+      passwordChangeStore.value.errorMessage = "Invalid OTP or password change failed. Please try again.";
+      passwordChangeStore.value.isSubmitting = false;
+      isLoading.value = false;
     }
   });
 
@@ -43,7 +99,7 @@ export default component$(() => {
         <div class="card">
           {showSuccessMessage.value && (
             <div class="success-message" style="margin-bottom: 1.5rem;">
-              <p>Profile updated successfully!</p>
+              <p>Password updated successfully!</p>
             </div>
           )}
           
@@ -53,7 +109,8 @@ export default component$(() => {
               <input 
                 type="text" 
                 value={profileData.value.fullName}
-                onInput$={(_, target) => profileData.value = { ...profileData.value, fullName: target.value }}
+                readOnly
+                style="background-color: #f5f5f5;"
               />
             </div>
             
@@ -63,7 +120,8 @@ export default component$(() => {
                 <input 
                   type="email" 
                   value={profileData.value.email}
-                  onInput$={(_, target) => profileData.value = { ...profileData.value, email: target.value }}
+                  readOnly
+                  style="background-color: #f5f5f5;"
                 />
               </div>
               
@@ -72,7 +130,8 @@ export default component$(() => {
                 <input 
                   type="text" 
                   value={profileData.value.phone}
-                  onInput$={(_, target) => profileData.value = { ...profileData.value, phone: target.value }}
+                  readOnly
+                  style="background-color: #f5f5f5;"
                 />
               </div>
             </div>
@@ -80,39 +139,95 @@ export default component$(() => {
           
           <div class="form-group">
             <label>Change Password</label>
-            <div style="display: flex; gap: 1rem;">
-              <input 
-                type="password" 
-                placeholder="Current Password"
-                style="flex: 1;"
-              />
-              <input 
-                type="password" 
-                placeholder="New Password" 
-                style="flex: 1;"
-              />
-              <input 
-                type="password" 
-                placeholder="Confirm Password" 
-                style="flex: 1;"
-              />
-            </div>
+            {passwordChangeStore.value.step === 1 ? (
+              <div style="display: flex; gap: 1rem;">
+                <input 
+                  type="password" 
+                  placeholder="Current Password"
+                  style="flex: 1;"
+                  value={currentPassword.value}
+                  onInput$={(_, target) => currentPassword.value = target.value}
+                  disabled={passwordChangeStore.value.isSubmitting}
+                />
+                <input 
+                  type="password" 
+                  placeholder="New Password" 
+                  style="flex: 1;"
+                  value={newPassword.value}
+                  onInput$={(_, target) => newPassword.value = target.value}
+                  disabled={passwordChangeStore.value.isSubmitting}
+                />
+                <input 
+                  type="password" 
+                  placeholder="Confirm Password" 
+                  style="flex: 1;"
+                  value={confirmPassword.value}
+                  onInput$={(_, target) => confirmPassword.value = target.value}
+                  disabled={passwordChangeStore.value.isSubmitting}
+                />
+              </div>
+            ) : (
+              <div>
+                <div class="form-group">
+                  <label>Enter OTP sent to your phone</label>
+                  <input
+                    type="text"
+                    placeholder="Enter 6-digit OTP"
+                    value={otpValue.value}
+                    onInput$={(_, target) => otpValue.value = target.value}
+                    disabled={passwordChangeStore.value.isSubmitting}
+                    maxLength={6}
+                    style="max-width: 200px;"
+                  />
+                  <div class="otp-info">
+                    A one-time password has been sent to your registered phone number.
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {passwordChangeStore.value.errorMessage && (
+              <div class="error-message" style="margin-top: 1rem;">
+                <p>{passwordChangeStore.value.errorMessage}</p>
+              </div>
+            )}
           </div>
           
           <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
             <button 
               class="cancel-button"
-              disabled={isSaving.value}
+              disabled={passwordChangeStore.value.isSubmitting}
+              onClick$={() => {
+                if (passwordChangeStore.value.step === 2) {
+                  passwordChangeStore.value.step = 1;
+                  passwordChangeStore.value.errorMessage = "";
+                } else {
+                  // Reset fields
+                  currentPassword.value = "";
+                  newPassword.value = "";
+                  confirmPassword.value = "";
+                  passwordChangeStore.value.errorMessage = "";
+                }
+              }}
             >
-              Cancel
+              {passwordChangeStore.value.step === 2 ? 'Back' : 'Cancel'}
             </button>
             <button 
               class="login-button" 
               style="width: auto;"
-              onClick$={saveProfile}
-              disabled={isSaving.value}
+              onClick$={passwordChangeStore.value.step === 1 ? requestOTP : changePassword}
+              disabled={
+                passwordChangeStore.value.isSubmitting || 
+                (passwordChangeStore.value.step === 1 && (!currentPassword.value || !newPassword.value || !confirmPassword.value)) ||
+                (passwordChangeStore.value.step === 2 && (!otpValue.value || otpValue.value.length < 6))
+              }
             >
-              {isSaving.value ? 'Saving...' : 'Save Changes'}
+              {passwordChangeStore.value.isSubmitting 
+                ? 'Processing...' 
+                : passwordChangeStore.value.step === 1 
+                  ? 'Request OTP'  
+                  : 'Change Password'
+              }
             </button>
           </div>
         </div>
