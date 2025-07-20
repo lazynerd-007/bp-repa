@@ -77,7 +77,7 @@ export default component$(() => {
                     'nav-item': true,
                     'active': location.pathname === item.path || 
                               (item.path === '/dashboard/settings/profile' && 
-                               location.pathname.startsWith('/dashboard/settings'))
+                               location.pathname && location.pathname.startsWith('/dashboard/settings'))
                   }}
                 >
                   <span 
