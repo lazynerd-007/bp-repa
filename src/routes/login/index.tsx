@@ -51,7 +51,7 @@ export default component$(() => {
           class="login-button" 
           onClick$={() => {
             // In a real app, we would validate credentials here
-            nav.path = "/dashboard";
+            nav("/dashboard");
           }}
         >
           Sign in

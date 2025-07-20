@@ -75,9 +75,9 @@ export default component$(() => {
                   href={item.path} 
                   class={{
                     'nav-item': true,
-                    'active': location.pathname === item.path || 
+                    'active': location.url.pathname === item.path || 
                               (item.path === '/dashboard/settings/profile' && 
-                               location.pathname && location.pathname.startsWith('/dashboard/settings'))
+                               location.url.pathname && location.url.pathname.startsWith('/dashboard/settings'))
                   }}
                 >
                   <span 
