@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book -->
+  <path d="M300 400 L500 360 L500 550 L300 590 Z" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+  <path d="M300 400 L100 360 L100 550 L300 590 Z" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+  <!-- Book pages -->
+  <path d="M300 400 L300 590" stroke="#333" stroke-width="2"/>
+  <path d="M320 405 L480 370" stroke="#999" stroke-width="1"/>
+  <path d="M320 425 L480 390" stroke="#999" stroke-width="1"/>
+  <path d="M320 445 L480 410" stroke="#999" stroke-width="1"/>
+  <path d="M320 465 L480 430" stroke="#999" stroke-width="1"/>
+  <path d="M320 485 L480 450" stroke="#999" stroke-width="1"/>
+  <path d="M320 505 L480 470" stroke="#999" stroke-width="1"/>
+  <path d="M320 525 L480 490" stroke="#999" stroke-width="1"/>
+  <path d="M320 545 L480 510" stroke="#999" stroke-width="1"/>
+  <path d="M320 565 L480 530" stroke="#999" stroke-width="1"/>
+  
+  <path d="M280 405 L120 370" stroke="#999" stroke-width="1"/>
+  <path d="M280 425 L120 390" stroke="#999" stroke-width="1"/>
+  <path d="M280 445 L120 410" stroke="#999" stroke-width="1"/>
+  <path d="M280 465 L120 430" stroke="#999" stroke-width="1"/>
+  <path d="M280 485 L120 450" stroke="#999" stroke-width="1"/>
+  <path d="M280 505 L120 470" stroke="#999" stroke-width="1"/>
+  <path d="M280 525 L120 490" stroke="#999" stroke-width="1"/>
+  <path d="M280 545 L120 510" stroke="#999" stroke-width="1"/>
+  <path d="M280 565 L120 530" stroke="#999" stroke-width="1"/>
+  
+  <!-- Person body -->
+  <path d="M300 380 C320 380 340 350 340 320 C340 290 320 250 300 250 C280 250 260 290 260 320 C260 350 280 380 300 380 Z" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Person head -->
+  <circle cx="300" cy="220" r="40" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Hair -->
+  <path d="M270 200 C260 190 265 170 280 170 C290 160 330 160 340 180 C350 195 345 215 330 220" fill="#FF7F50" stroke="#333" stroke-width="1"/>
+  <path d="M300 220 C310 210 330 220 340 200 C350 180 345 160 330 160 C315 160 290 170 280 190" fill="#FF7F50" stroke="#333" stroke-width="1"/>
+  <path d="M300 220 C320 230 340 220 350 200 C360 180 350 160 330 155" fill="#FF7F50" stroke="#333" stroke-width="1"/>
+  
+  <!-- Eye -->
+  <path d="M290 210 C295 205 300 205 305 210" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Arms -->
+  <path d="M260 320 C240 330 230 370 250 390 C260 400 280 410 300 410" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  <path d="M340 320 C360 330 370 360 360 380 C350 400 330 410 300 410" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Stripes shirt -->
+  <path d="M280 280 L320 280" stroke="#FF7F50" stroke-width="6"/>
+  <path d="M275 300 L325 300" stroke="#fff" stroke-width="6"/>
+  <path d="M270 320 L330 320" stroke="#FF7F50" stroke-width="6"/>
+  <path d="M265 340 L335 340" stroke="#fff" stroke-width="6"/>
+  <path d="M265 360 L335 360" stroke="#FF7F50" stroke-width="6"/>
+  
+  <!-- Cat -->
+  <ellipse cx="500" cy="320" rx="30" ry="20" fill="#e0e0e0" stroke="#333" stroke-width="1.5"/>
+  <circle cx="520" cy="310" r="15" fill="#e0e0e0" stroke="#333" stroke-width="1.5"/>
+  <path d="M510 305 L520 300 L530 305" stroke="#333" stroke-width="1"/>
+  <ellipse cx="515" cy="310" rx="1.5" ry="3" fill="#333"/>
+  <ellipse cx="525" cy="310" rx="1.5" ry="3" fill="#333"/>
+  <path d="M520 315 L525 320" stroke="#333" stroke-width="1"/>
+  <path d="M505 320 L495 310" stroke="#333" stroke-width="1.5"/>
+  <path d="M535 320 L545 310" stroke="#333" stroke-width="1.5"/>
+  <!-- Cat tail -->
+  <path d="M480 330 C470 340 475 350 485 355 C495 360 505 350 500 340" fill="#e0e0e0" stroke="#333" stroke-width="1.5"/>
+  
+  <!-- Jeans and legs -->
+  <path d="M280 380 L270 460" stroke="#4a90e2" stroke-width="12" stroke-linecap="round"/>
+  <path d="M320 380 L330 460" stroke="#4a90e2" stroke-width="12" stroke-linecap="round"/>
+</svg> 

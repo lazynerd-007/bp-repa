@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dashboard Background -->
+  <rect x="100" y="150" width="400" height="300" rx="8" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+  
+  <!-- Charts and Graphs -->
+  <!-- Bar Chart -->
+  <rect x="150" y="220" width="20" height="80" fill="#4a90e2" rx="2"/>
+  <rect x="180" y="250" width="20" height="50" fill="#4a90e2" rx="2"/>
+  <rect x="210" y="200" width="20" height="100" fill="#4a90e2" rx="2"/>
+  <rect x="240" y="270" width="20" height="30" fill="#4a90e2" rx="2"/>
+  <rect x="270" y="230" width="20" height="70" fill="#4a90e2" rx="2"/>
+  
+  <!-- Line Chart -->
+  <path d="M330 270 L360 230 L390 250 L420 200 L450 240" stroke="#FF7F50" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="330" cy="270" r="4" fill="#FF7F50"/>
+  <circle cx="360" cy="230" r="4" fill="#FF7F50"/>
+  <circle cx="390" cy="250" r="4" fill="#FF7F50"/>
+  <circle cx="420" cy="200" r="4" fill="#FF7F50"/>
+  <circle cx="450" cy="240" r="4" fill="#FF7F50"/>
+  
+  <!-- Dashboard Title -->
+  <rect x="150" y="170" width="300" height="30" rx="4" fill="#e0e0e0"/>
+  
+  <!-- Person body -->
+  <path d="M300 500 C320 500 340 470 340 440 C340 410 320 380 300 380 C280 380 260 410 260 440 C260 470 280 500 300 500 Z" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Person head -->
+  <circle cx="300" cy="350" r="40" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Hair -->
+  <path d="M270 330 C260 320 265 300 280 300 C290 290 330 290 340 310 C350 325 345 345 330 350" fill="#FF7F50" stroke="#333" stroke-width="1"/>
+  <path d="M300 350 C310 340 330 350 340 330 C350 310 345 290 330 290 C315 290 290 300 280 320" fill="#FF7F50" stroke="#333" stroke-width="1"/>
+  <path d="M300 350 C320 360 340 350 350 330 C360 310 350 290 330 285" fill="#FF7F50" stroke="#333" stroke-width="1"/>
+  
+  <!-- Face -->
+  <path d="M290 340 C295 335 300 335 305 340" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Arms - one pointing at the dashboard -->
+  <path d="M260 440 C240 450 230 470 250 490" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  <path d="M340 440 C360 420 380 380 350 350" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Business attire -->
+  <path d="M280 410 L320 410" stroke="#4a4a4a" stroke-width="6"/>
+  <path d="M275 430 L325 430" stroke="#4a4a4a" stroke-width="6"/>
+  <path d="M270 450 L330 450" stroke="#4a4a4a" stroke-width="6"/>
+  <path d="M265 470 L335 470" stroke="#4a4a4a" stroke-width="6"/>
+  
+  <!-- Tie -->
+  <path d="M300 410 L310 450 L300 490 L290 450 L300 410" fill="#4a90e2" stroke="#333" stroke-width="1"/>
+  
+  <!-- Money/coins element -->
+  <circle cx="500" cy="450" r="30" fill="#f0c419" stroke="#333" stroke-width="1.5"/>
+  <circle cx="500" cy="450" r="20" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+  <text x="490" y="455" font-family="Arial" font-size="14" font-weight="bold">$</text>
+  
+  <circle cx="470" cy="480" r="25" fill="#f0c419" stroke="#333" stroke-width="1.5"/>
+  <circle cx="470" cy="480" r="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+  <text x="465" y="485" font-family="Arial" font-size="12" font-weight="bold">$</text>
+  
+  <circle cx="520" cy="490" r="20" fill="#f0c419" stroke="#333" stroke-width="1.5"/>
+  <circle cx="520" cy="490" r="12" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+  <text x="516" y="494" font-family="Arial" font-size="10" font-weight="bold">$</text>
+</svg> 
