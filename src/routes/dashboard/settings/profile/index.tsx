@@ -11,10 +11,7 @@ export default component$(() => {
     fullName: "John Smith",
     email: "john@bploans.com",
     phone: "233-123-4567",
-    role: "Finance Manager",
-    department: "Finance",
-    joinedDate: "2022-05-15",
-    profileImageUrl: "/images/profile-placeholder.png"
+    joinedDate: "2022-05-15"
   });
   
   const saveProfile = $(async () => {
@@ -50,76 +47,33 @@ export default component$(() => {
             </div>
           )}
           
-          <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
-            <div style="flex: 0 0 120px;">
-              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; background-color: #e0e0e0;">
-                <img 
-                  src={profileData.value.profileImageUrl} 
-                  alt="Profile" 
-                  style="width: 100%; height: 100%; object-fit: cover;"
-                  onError$={(_, el) => {
-                    el.src = "https://via.placeholder.com/120";
-                  }}
-                />
-              </div>
-              <button 
-                class="login-button" 
-                style="width: 100%; margin-top: 1rem; font-size: 0.8rem;"
-              >
-                Change Photo
-              </button>
+          <div style="margin-bottom: 2rem;">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input 
+                type="text" 
+                value={profileData.value.fullName}
+                onInput$={(_, target) => profileData.value = { ...profileData.value, fullName: target.value }}
+              />
             </div>
             
-            <div style="flex: 1;">
-              <div class="form-group">
-                <label>Full Name</label>
+            <div style="display: flex; gap: 1rem;">
+              <div class="form-group" style="flex: 1;">
+                <label>Email</label>
                 <input 
-                  type="text" 
-                  value={profileData.value.fullName}
-                  onInput$={(_, target) => profileData.value = { ...profileData.value, fullName: target.value }}
+                  type="email" 
+                  value={profileData.value.email}
+                  onInput$={(_, target) => profileData.value = { ...profileData.value, email: target.value }}
                 />
               </div>
               
-              <div style="display: flex; gap: 1rem;">
-                <div class="form-group" style="flex: 1;">
-                  <label>Email</label>
-                  <input 
-                    type="email" 
-                    value={profileData.value.email}
-                    onInput$={(_, target) => profileData.value = { ...profileData.value, email: target.value }}
-                  />
-                </div>
-                
-                <div class="form-group" style="flex: 1;">
-                  <label>Phone</label>
-                  <input 
-                    type="text" 
-                    value={profileData.value.phone}
-                    onInput$={(_, target) => profileData.value = { ...profileData.value, phone: target.value }}
-                  />
-                </div>
-              </div>
-              
-              <div style="display: flex; gap: 1rem;">
-                <div class="form-group" style="flex: 1;">
-                  <label>Role</label>
-                  <input 
-                    type="text" 
-                    value={profileData.value.role}
-                    onInput$={(_, target) => profileData.value = { ...profileData.value, role: target.value }}
-                    readOnly
-                  />
-                </div>
-                
-                <div class="form-group" style="flex: 1;">
-                  <label>Department</label>
-                  <input 
-                    type="text" 
-                    value={profileData.value.department}
-                    onInput$={(_, target) => profileData.value = { ...profileData.value, department: target.value }}
-                    readOnly
-                  />
-                </div>
+              <div class="form-group" style="flex: 1;">
+                <label>Phone</label>
+                <input 
+                  type="text" 
+                  value={profileData.value.phone}
+                  onInput$={(_, target) => profileData.value = { ...profileData.value, phone: target.value }}
+                />
               </div>
             </div>
           </div>
