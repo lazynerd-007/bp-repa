@@ -4,7 +4,6 @@ import Loader from "~/components/loader/loader";
 
 export default component$(() => {
   const isLoading = useSignal(false);
-  const isSaving = useSignal(false);
   const showSuccessMessage = useSignal(false);
   const currentPassword = useSignal("");
   const newPassword = useSignal("");
@@ -44,7 +43,7 @@ export default component$(() => {
       passwordChangeStore.value.otpSent = true;
       passwordChangeStore.value.step = 2;
       passwordChangeStore.value.errorMessage = "";
-    } catch (error) {
+    } catch {
       passwordChangeStore.value.errorMessage = "Failed to send OTP. Please try again.";
       passwordChangeStore.value.isSubmitting = false;
       isLoading.value = false;
@@ -79,7 +78,7 @@ export default component$(() => {
       
       isLoading.value = false;
       passwordChangeStore.value.isSubmitting = false;
-    } catch (error) {
+    } catch {
       passwordChangeStore.value.errorMessage = "Invalid OTP or password change failed. Please try again.";
       passwordChangeStore.value.isSubmitting = false;
       isLoading.value = false;

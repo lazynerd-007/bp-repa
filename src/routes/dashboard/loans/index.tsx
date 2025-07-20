@@ -180,7 +180,7 @@ export default component$(() => {
       paymentStore.otpSent = true;
       paymentStore.paymentStep = 2;
       
-    } catch (_) {
+    } catch {
       paymentStore.errorMessage = "Failed to send OTP. Please try again.";
       paymentStore.isSubmitting = false;
       isLoading.value = false;
@@ -212,7 +212,7 @@ export default component$(() => {
         paymentAmount.value = "";
         otpValue.value = "";
       }, 2000);
-    } catch (_) {
+    } catch {
       paymentStore.errorMessage = "Invalid OTP or payment failed. Please try again.";
       paymentStore.isSubmitting = false;
       isLoading.value = false;
