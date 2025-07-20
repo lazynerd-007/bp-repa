@@ -14,8 +14,10 @@ import {
 import qwikCityPlan from "@qwik-city-plan";
 import render from "./entry.ssr";
 
+// This type augmentation is used by Qwik to merge platform-specific properties
 declare global {
-  interface QwikCityPlatform extends PlatformVercel {}
+  // Use type instead of interface to avoid the empty interface lint error
+  type QwikCityPlatform = PlatformVercel;
 }
 
 export default createQwikCity({ render, qwikCityPlan });
