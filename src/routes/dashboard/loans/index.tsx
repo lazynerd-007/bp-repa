@@ -21,11 +21,14 @@ export default component$(() => {
   const showPaymentModal = useSignal(false);
   const selectedLoan = useSignal<Loan | null>(null);
   const paymentAmount = useSignal("");
+  const otpValue = useSignal("");
   
   const paymentStore = useStore({
     isSubmitting: false,
     isSuccess: false,
-    errorMessage: ""
+    errorMessage: "",
+    paymentStep: 1, // 1: Payment details, 2: OTP verification
+    otpSent: false
   });
 
   const loans: Loan[] = [
@@ -162,14 +165,36 @@ export default component$(() => {
     }
   });
 
-  const processPayment = $(async () => {
+  const requestOTP = $(async () => {
     if (!selectedLoan.value || !paymentAmount.value) return;
+    
+    paymentStore.isSubmitting = true;
+    
+    try {
+      // Simulate API call to send OTP
+      isLoading.value = true;
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      isLoading.value = false;
+      paymentStore.isSubmitting = false;
+      paymentStore.otpSent = true;
+      paymentStore.paymentStep = 2;
+      
+    } catch (_) {
+      paymentStore.errorMessage = "Failed to send OTP. Please try again.";
+      paymentStore.isSubmitting = false;
+      isLoading.value = false;
+    }
+  });
+
+  const processPayment = $(async () => {
+    if (!selectedLoan.value || !paymentAmount.value || !otpValue.value) return;
     
     paymentStore.isSubmitting = true;
     paymentStore.errorMessage = "";
     
     try {
-      // Simulate API call
+      // Simulate API call to verify OTP and process payment
       isLoading.value = true;
       await new Promise(resolve => setTimeout(resolve, 1500));
       
@@ -181,11 +206,14 @@ export default component$(() => {
         showPaymentModal.value = false;
         paymentStore.isSuccess = false;
         paymentStore.isSubmitting = false;
+        paymentStore.otpSent = false;
+        paymentStore.paymentStep = 1;
         selectedLoan.value = null;
         paymentAmount.value = "";
+        otpValue.value = "";
       }, 2000);
     } catch (_) {
-      paymentStore.errorMessage = "Failed to process payment. Please try again.";
+      paymentStore.errorMessage = "Invalid OTP or payment failed. Please try again.";
       paymentStore.isSubmitting = false;
       isLoading.value = false;
     }
@@ -319,11 +347,21 @@ export default component$(() => {
         <div class="modal-backdrop" onClick$={() => !paymentStore.isSubmitting && (showPaymentModal.value = false)}>
           <div class="modal" onClick$={(e) => e.stopPropagation()}>
             <div class="modal-header">
-              <div class="modal-title">Process Payment for {selectedLoan.value.merchant}</div>
+              <div class="modal-title">
+                {paymentStore.paymentStep === 1 
+                  ? `Process Payment for ${selectedLoan.value.merchant}`
+                  : `Verify OTP for ${selectedLoan.value.merchant}`
+                }
+              </div>
               {!paymentStore.isSubmitting && (
                 <button 
                   class="modal-close" 
-                  onClick$={() => showPaymentModal.value = false}
+                  onClick$={() => {
+                    showPaymentModal.value = false;
+                    // Reset on close
+                    paymentStore.paymentStep = 1;
+                    paymentStore.otpSent = false;
+                  }}
                 >
                   &times;
                 </button>
@@ -353,15 +391,32 @@ export default component$(() => {
                     <div class="detail-value">{selectedLoan.value.nextPayment}</div>
                   </div>
                   
-                  <div class="form-group">
-                    <label>Payment Amount (GHS)</label>
-                    <input
-                      type="text"
-                      value={paymentAmount.value}
-                      onInput$={(e, target) => paymentAmount.value = target.value}
-                      disabled={paymentStore.isSubmitting}
-                    />
-                  </div>
+                  {paymentStore.paymentStep === 1 ? (
+                    <div class="form-group">
+                      <label>Payment Amount (GHS)</label>
+                      <input
+                        type="text"
+                        value={paymentAmount.value}
+                        onInput$={(e, target) => paymentAmount.value = target.value}
+                        disabled={paymentStore.isSubmitting}
+                      />
+                    </div>
+                  ) : (
+                    <div class="form-group">
+                      <label>Enter OTP sent to your phone</label>
+                      <input
+                        type="text"
+                        placeholder="Enter 6-digit OTP"
+                        value={otpValue.value}
+                        onInput$={(e, target) => otpValue.value = target.value}
+                        disabled={paymentStore.isSubmitting}
+                        maxLength={6}
+                      />
+                      <div class="otp-info">
+                        A one-time password has been sent to your registered phone number.
+                      </div>
+                    </div>
+                  )}
                   
                   {paymentStore.errorMessage && (
                     <div class="error-message">
@@ -382,17 +437,30 @@ export default component$(() => {
                 <>
                   <button 
                     class="cancel-button" 
-                    onClick$={() => showPaymentModal.value = false}
+                    onClick$={() => {
+                      if (paymentStore.paymentStep === 2) {
+                        paymentStore.paymentStep = 1;
+                      } else {
+                        showPaymentModal.value = false;
+                      }
+                    }}
                     disabled={paymentStore.isSubmitting}
                   >
-                    Cancel
+                    {paymentStore.paymentStep === 2 ? 'Back' : 'Cancel'}
                   </button>
                   <button 
                     class="login-button" 
-                    onClick$={processPayment}
-                    disabled={paymentStore.isSubmitting || !paymentAmount.value}
+                    onClick$={paymentStore.paymentStep === 1 ? requestOTP : processPayment}
+                    disabled={paymentStore.isSubmitting || 
+                             (paymentStore.paymentStep === 1 && !paymentAmount.value) ||
+                             (paymentStore.paymentStep === 2 && (!otpValue.value || otpValue.value.length < 6))}
                   >
-                    {paymentStore.isSubmitting ? 'Processing...' : 'Confirm Payment'}
+                    {paymentStore.isSubmitting 
+                      ? 'Processing...' 
+                      : paymentStore.paymentStep === 1 
+                        ? 'Request OTP' 
+                        : 'Confirm Payment'
+                    }
                   </button>
                 </>
               )}
