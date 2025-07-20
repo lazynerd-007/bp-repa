@@ -1,6 +1,5 @@
 import { component$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import ImgFinanceIllustration from '~/media/images/finance-illustration.svg?jsx';
 
 export default component$(() => {
   const email = useSignal("");
@@ -56,7 +55,7 @@ export default component$(() => {
       </div>
 
       <div class="login-illustration">
-        <ImgFinanceIllustration />
+        <img src="/images/finance-illustration.svg" alt="Finance dashboard illustration" />
       </div>
     </div>
   );
